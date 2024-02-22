@@ -1,0 +1,11 @@
+.status-success {
+  @apply bg-[#e8ffe3] border-[#38f269];
+}
+
+.status-error {
+  @apply bg-[#ffe3e3] border-[#ff3030];
+}
+
+.status-normal {
+  @apply bg-[#eef0f5] border-[#eef0f5];
+}

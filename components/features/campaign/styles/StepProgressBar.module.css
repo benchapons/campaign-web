@@ -1,0 +1,114 @@
+.stepper-wrapper {
+  display: flex;
+  justify-content: center;
+  /* position: fixed; */
+  width: 100%;
+  /* right: 0; */
+  /* padding: 20px 0; */
+  /* background-color: var(--milky-way); */
+  z-index: 30;
+}
+
+.stepper-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex: 1; */
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  padding: 2px 8px;
+  border-radius: 18px;
+  justify-content: center;
+  color: #696969;
+}
+
+/* .stepper-item::before {
+  position: absolute;
+  content: '';
+  border-bottom: 4px solid #abb8c3;
+  width: 100%;
+  top: 30px;
+  left: -50%;
+  z-index: 2;
+} */
+
+/* .stepper-item::after {
+  position: absolute;
+  content: '';
+  border-bottom: 4px solid #abb8c3;
+  width: 100%;
+  top: 30px;
+  left: 50%;
+  z-index: 2;
+} */
+
+.stepper-item .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  font-size: 16px;
+  padding-right: 6px;
+}
+
+/* .stepper-item .step-counter svg {
+  font-size: 30px;
+} */
+
+/* .stepper-item .step-counter.active {
+  border: 2px solid #00d084;
+} */
+
+.stepper-item.active {
+  border: 1px solid #19a7ce;
+  color: #19a7ce;
+}
+
+.stepper-item.completed .step-counter {
+  background-color: #00d084;
+  color: white;
+  border: 2px solid #00d084;
+}
+
+.stepper-item.completed::after {
+  position: absolute;
+  content: '';
+  border-bottom: 4px solid #00d084;
+  width: 100%;
+  top: 30px;
+  left: 50%;
+  z-index: 3;
+}
+
+.stepper-item:first-child::before {
+  content: none;
+}
+.stepper-item:last-child::after {
+  content: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-allowed {
+  cursor: not-allowed;
+}
+
+.btn {
+  background-color: transparent;
+  border: unset;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  opacity: 1;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  color: inherit;
+}

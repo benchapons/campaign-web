@@ -1,0 +1,44 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 0.5rem 1rem; */
+  list-style: none;
+  background-color: transparent;
+  border-radius: 0.5rem;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '>';
+  margin: 0 0.5rem;
+  color: #adb5bd;
+}
+
+.breadcrumb button {
+  font-size: 0.9rem;
+  color: #495057;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.breadcrumb button:not(.active):hover {
+  color: #003e68;
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.breadcrumb .active {
+  color: #003e68;
+  background-color: rgba(0, 123, 255, 0.1);
+  pointer-events: none;
+  cursor: default;
+  font-weight: bold;
+}

@@ -1,0 +1,2 @@
+export const LIMIT_IMG_UPLOAD_MB = 10;
+export const LIMIT_IMG_UPLOAD_SIZE = 1024 * 1000 * LIMIT_IMG_UPLOAD_MB;

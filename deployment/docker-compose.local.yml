@@ -1,0 +1,13 @@
+version: '2'
+services:
+  prod:
+    container_name: campaign-management-web_local
+    image: cx/campaign/campaign-management-web
+    volumes:
+      - ../.env.local:/.env
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - 31032:3000
+    restart: unless-stopped

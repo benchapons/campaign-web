@@ -1,0 +1,9 @@
+version: "2"
+services:
+  app:
+    build:
+        context: ../
+        dockerfile: Dockerfile
+        target: production
+    image: $FULLIMAGENAME
+    container_name: $APPNAME

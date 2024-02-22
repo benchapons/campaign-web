@@ -1,0 +1,11 @@
+node_modules
+coverage
+cypress
+deployment
+
+.nyc_output
+.next
+.vscode
+.gitignore
+.git
+README.md

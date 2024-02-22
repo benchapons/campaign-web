@@ -1,0 +1,19 @@
+.upload-file-bar {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000; /* Ensure it's above other content */
+  opacity: 0.6;
+  max-width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upload-file-bar:hover {
+  opacity: 1;
+}
