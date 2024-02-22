@@ -1,0 +1,69 @@
+.sidebar-toggle {
+  transform: translate(0);
+  min-width: 20px;
+}
+
+.profile-toggle {
+  transform: translate(0);
+  margin-left: 20px;
+  margin-right: -20px;
+}
+
+.button {
+  @apply p-1 rounded-[30px] border border-gray-gainsboro bg-white hover:bg-blue-fresh hover:text-white;
+}
+
+.text-name-profile {
+  white-space: nowrap;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-profile {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.viz {
+  color: var(--bg-color);
+  background-color: var(--text-topic-viz);
+}
+
+.shopper {
+  color: var(--bg-color);
+  background-color: var(--text-topic-shopper);
+}
+
+.menu {
+  @apply flex py-3 px-2 rounded-md text-blue-oxford justify-between;
+}
+
+.menu:hover svg {
+  @apply text-blue-cobalt;
+}
+
+.menu:hover {
+  @apply bg-blue-fresh/20 text-blue-cobalt transition delay-150 ease-in;
+}
+.menu.active {
+  @apply bg-blue-fresh/30;
+}
+
+.menu-collaborative {
+  @apply flex flex-col py-2 rounded-md text-blue-oxford;
+}
+
+.menu-collaborative:hover {
+  @apply bg-blue-fresh/20 text-blue-cobalt transition delay-150 ease-in;
+}
+.menu-collaborative.active {
+  @apply bg-blue-fresh/30;
+}

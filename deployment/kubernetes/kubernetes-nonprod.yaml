@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: $NAMESPACE
+  name: $APPNAME
+  labels:
+    app: $APPNAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: $APPNAME
+  template:
+    metadata:
+      labels:
+        app: $APPNAME
+    spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: $IMAGEPULLSECRETS
+      volumes:
+        - name: config-env-volume
+          configMap:
+            name: $CONFIGMAPNAME
+            defaultMode: 420
+            items:
+              - key: 'ENV_FILE'
+                path: '.env.production'
+      containers:
+        - name: $APPNAME
+          image: $FULLIMAGENAME
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: config-env-volume
+              mountPath: /app/.env.production
+              readOnly: true
+              subPath: .env.production
+          env:
+            - name: CAMPAIGN_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: CAMPAIGN_API_KEY
+            - name: AZURE_AD_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: AZURE_AD_SECRET
+            - name: SPW_PORTAL_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: SPW_PORTAL_API_KEY
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: JWT_SECRET
+            - name: MASTER_DATA_CS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: MASTER_DATA_CS_KEY
+            - name: REPORT_SERVICE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: REPORT_SERVICE_API_KEY
+            - name: NEW_RELIC_LICENSE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: $KUBESECRETNAME
+                  key: NEW_RELIC_LICENSE_KEY
+          ports:
+            - containerPort: 31006
+              name: http
+              protocol: TCP
+          resources:
+            requests:
+              cpu: '0.3'
+              memory: 256Mi
+            limits:
+              cpu: '0.5'
+              memory: 512Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: $APPNAME
+spec:
+  ports:
+    - name: http
+      port: 31006
+      protocol: TCP
+      targetPort: 3000
+      nodePort: 31006
+  selector:
+    app: $APPNAME
+  type: NodePort

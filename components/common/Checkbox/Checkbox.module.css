@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  align-items: center;
+}
+
+.container input {
+  display: none;
+}
+
+.check-mark {
+  position: inherit;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #19a7ce;
+  border-radius: 4px;
+}
+
+.disabled .check-mark {
+  position: inherit;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #e8ecef;
+  border-radius: 4px;
+}
+
+.container:hover input ~ .check-mark {
+  background-color: #19a7ce;
+}
+
+.container input:checked ~ .check-mark {
+  background-color: #19a7ce;
+}
+
+.container.disabled input:checked ~ .check-mark {
+  background: #e8ecef;
+}
+
+.check-mark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .check-mark:after {
+  display: block;
+}
+
+.container .check-mark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.disabled:hover input ~ .check-mark {
+  background-color: transparent;
+}
