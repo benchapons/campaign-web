@@ -24,7 +24,7 @@ const useReport = <V>(
   reportType: ReportTypeEnum,
   pullingTime: number,
 ) => {
-  const [pulling, setPulling] = useState(pullingTime);
+  const [pulling, setPulling] = useState<number>(pullingTime);
   const [reportList, setReportList] = useState<ListReport<V>[]>([]);
   const [meta, setMeta] = useState<Meta>({
     currentPage: 1,
@@ -40,7 +40,7 @@ const useReport = <V>(
   const [campaignList, setCampaignList] = useState<any[]>([]);
 
   const { clearIntervalHook, startTime } = useInterval(() => {
-    if (pulling > 0) return setPulling((time) => time - 1);
+    if (pulling > 0) return setPulling((_time: number) => _time - 1);
     fetchReportRequest(page, sizePage);
   }, 1000);
 
@@ -203,11 +203,16 @@ const useReport = <V>(
   };
 
   const postRequestReportByReportType = <T>(params: T) => {
+    if (!authorizedUser.mail) {
+      return SwalCustom.fire('คำขอไม่สำเร็จ', 'กรุณาเพิ่ม Email ใน Account ด้วย', 'warning');
+
+    }
     postRequestReport(
       {
         ...params,
         requestByUserId: authorizedUser.id,
         requestByUserName: authorizedUser.displayName,
+        requestByUserEmail: authorizedUser.mail
       },
       reportType
     )
