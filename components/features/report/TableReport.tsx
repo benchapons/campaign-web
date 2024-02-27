@@ -4,18 +4,20 @@ import ErrorStatus from "@/components/status/ErrorStatus"
 import PendingStatus from "@/components/status/PendingStatus"
 import SuccessStatus from "@/components/status/SuccessStatus"
 import { ChangeEventBaseType } from "@/types/event.interface"
-import { ListReport, Meta, StatusReportEnum } from "@/types/report.type"
+import { ListReport, Meta, StatusReportEnum, ReportTypeEnum } from "@/types/report.type"
 import { Fragment } from "react"
-import { MdDelete, MdDownload } from "react-icons/md"
+import { MdDelete, MdDownload, MdEmail, MdRecentActors } from "react-icons/md"
 
 type TableReportType<T> = {
   reportListPage: ListReport<T>[]
   page: number
   meta: Meta
   sizePage: number
+  reportType: ReportTypeEnum
   handlePage: (pageSelect: number) => void
   handlePerPage: (event: ChangeEventBaseType<string>) => void
   deleteRequestReportId: (requestId: string) => Promise<void>
+  reSentEmail: (requestId: string) => Promise<void>
 }
 
 const StatusBar = {
@@ -29,9 +31,11 @@ const TableReport = <V,>({
   page,
   meta,
   sizePage,
+  reportType,
   handlePage,
   handlePerPage,
-  deleteRequestReportId
+  deleteRequestReportId,
+  reSentEmail
 }: TableReportType<V>) => {
   return <Fragment>
     <table className="table-auto border-collapse w-full mt-4">
@@ -62,8 +66,16 @@ const TableReport = <V,>({
                   >
                     <MdDownload className="text-[18px]" />
                   </Button>
+                  {reportType === ReportTypeEnum.BANK_PROMOTION_REPORT || reportType === ReportTypeEnum.RECEIPT_TRANSACTION_REPORT ? (
+                    <Fragment>
+                      <div className="pl-2" />
+                      <Button theme="info" isSmall name="recent" onClick={() => reSentEmail(_report._id)}>
+                        <MdRecentActors className="text-[18px]" />
+                      </Button>
+                    </Fragment>
+                  ) : null}
                   <div className="pl-2" />
-                  <Button theme="danger" isSmall name="delete" onClick={() => deleteRequestReportId(_report.jobId)}>
+                  <Button theme="danger" isSmall name="delete" onClick={() => deleteRequestReportId(_report._id)}>
                     <MdDelete className="text-[18px]" />
                   </Button>
                 </div>

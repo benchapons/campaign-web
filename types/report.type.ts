@@ -82,6 +82,7 @@ export enum ReportTypeEnum {
   REDEMPTION_TRANSACTION_RECEIPT_REPORT = 'redemption-transaction-receipt-report',
   SUMMARY_REDEMPTION_REWARD_REPORT = 'summary-redemption-reward-report',
   BANK_PROMOTION_REPORT = 'bank-promotion-report',
+  OPERATION_REPORT = 'operation-report',
 }
 
 export type ResponseGetListReport<T> = {

@@ -18,7 +18,7 @@ import { AllBuildOption, AllOptionValue } from '@/constants/global';
 import { CheckValueArrayInArrayOfObjects } from '@/utilities/global';
 import { PageSessionType } from '@/types/session.type';
 import { Fragment } from 'react';
-import { RedemptionTransactionReceiptFormType } from '@/types/report.type';
+import { RedemptionTransactionReceiptFormType, ReportTypeEnum } from '@/types/report.type';
 import TableReport from '@/components/features/report/TableReport';
 
 const RedemptionTransactionReceiptPage = ({ authorizedUser }: PageSessionType) => {
@@ -33,6 +33,7 @@ const RedemptionTransactionReceiptPage = ({ authorizedUser }: PageSessionType) =
     onChangeInput,
     handleClickExport,
     handleClickAuditLog,
+    reSentEmail,
     deleteRequestReportId,
     page,
     sizePage,
@@ -114,6 +115,8 @@ const RedemptionTransactionReceiptPage = ({ authorizedUser }: PageSessionType) =
           sizePage={sizePage}
           handlePage={handlePage}
           handlePerPage={handlePerPage}
+          reportType={ReportTypeEnum.REDEMPTION_TRANSACTION_RECEIPT_REPORT}
+          reSentEmail={reSentEmail}
           deleteRequestReportId={deleteRequestReportId} />
       </div>
     </Fragment>

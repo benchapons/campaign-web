@@ -20,7 +20,7 @@ import { convertDateByFormat } from '@/utilities/format';
 import { CheckValueArrayInArrayOfObjects } from '@/utilities/global';
 import { PageSessionType } from '@/types/session.type';
 import TableReport from '@/components/features/report/TableReport';
-import { SummaryRedemptionRewardFormType } from '@/types/report.type';
+import { ReportTypeEnum, SummaryRedemptionRewardFormType } from '@/types/report.type';
 
 const SummaryRedemptionRewardPage = ({ authorizedUser }: PageSessionType) => {
   const {
@@ -33,7 +33,7 @@ const SummaryRedemptionRewardPage = ({ authorizedUser }: PageSessionType) => {
     onChangeInput,
     handleClickExport,
     handleClickAuditLog,
-
+    reSentEmail,
     deleteRequestReportId,
 
     page,
@@ -159,6 +159,8 @@ const SummaryRedemptionRewardPage = ({ authorizedUser }: PageSessionType) => {
           sizePage={sizePage}
           handlePage={handlePage}
           handlePerPage={handlePerPage}
+          reportType={ReportTypeEnum.SUMMARY_REDEMPTION_REWARD_REPORT}
+          reSentEmail={reSentEmail}
           deleteRequestReportId={deleteRequestReportId} />
       </div>
     </Fragment>

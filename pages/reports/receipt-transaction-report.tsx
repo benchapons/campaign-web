@@ -14,7 +14,7 @@ import { PagePermission, Permission } from '@/constants/auth';
 import { AllBuildOption, AllOptionValue } from '@/constants/global';
 import withSession from '@/hoc/withSession';
 import useReceiptTransactionReport from '@/hooks/report/useReceiptTransactionReport';
-import { ReceiptTransactionReportFormType } from '@/types/report.type';
+import { ReceiptTransactionReportFormType, ReportTypeEnum } from '@/types/report.type';
 import { PageSessionType } from '@/types/session.type';
 import { isPagePermission } from '@/utilities/auth';
 import { CheckValueArrayInArrayOfObjects } from '@/utilities/global';
@@ -32,7 +32,7 @@ const RedemptionTransactionReceiptPage = ({ authorizedUser }: PageSessionType) =
     onChangeInput,
     handleClickExport,
     handleClickAuditLog,
-
+    reSentEmail,
     deleteRequestReportId,
 
     page,
@@ -124,6 +124,8 @@ const RedemptionTransactionReceiptPage = ({ authorizedUser }: PageSessionType) =
           sizePage={sizePage}
           handlePage={handlePage}
           handlePerPage={handlePerPage}
+          reportType={ReportTypeEnum.RECEIPT_TRANSACTION_REPORT}
+          reSentEmail={reSentEmail}
           deleteRequestReportId={deleteRequestReportId} />
       </div>
     </Fragment>

@@ -32,7 +32,7 @@ const useReceiptTransactionReport = (authorizedUser: AuthorizedUserType) => {
 
     fetchReportRequest,
     deleteRequestReportId,
-
+    reSentEmail,
     setPulling,
     clearIntervalHook,
     postRequestReportByReportType,
@@ -129,7 +129,7 @@ const useReceiptTransactionReport = (authorizedUser: AuthorizedUserType) => {
     onChangeInput,
     handleClickExport: methodsForm?.handleSubmit(handleClickExport),
     handleClickAuditLog,
-
+    reSentEmail,
     deleteRequestReportId,
     postRequestReportByReportType,
     page,

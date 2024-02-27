@@ -41,6 +41,7 @@ export const CLIENT_API_PATH = {
   REPORT: {
     GET_LIST_JOB: 'get-list-job',
     POST_REQUEST_JOB: 'request',
-    DELETE_JOB: 'delete-job'
+    DELETE_JOB: 'delete-job',
+    RE_SENT_EMAIL: 're-sent-email',
   }
 }

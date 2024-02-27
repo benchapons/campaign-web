@@ -17,8 +17,9 @@ import { AllBuildOption, AllOptionValue } from '@/constants/global';
 import { CheckValueArrayInArrayOfObjects } from '@/utilities/global';
 import { Fragment } from 'react';
 import TableReport from '@/components/features/report/TableReport';
-import { BankPromotionFormType } from '@/types/report.type';
+import { BankPromotionFormType, ReportTypeEnum } from '@/types/report.type';
 import { PageSessionType } from '@/types/session.type';
+import ReportType from '../api/report/request/[reportType]';
 
 const BankPromotionPage = ({ authorizedUser }: PageSessionType) => {
   const {
@@ -31,7 +32,7 @@ const BankPromotionPage = ({ authorizedUser }: PageSessionType) => {
     onChangeInput,
     handleClickExport,
     handleClickAuditLog,
-
+    reSentEmail,
     deleteRequestReportId,
     page,
     sizePage,
@@ -98,6 +99,8 @@ const BankPromotionPage = ({ authorizedUser }: PageSessionType) => {
           sizePage={sizePage}
           handlePage={handlePage}
           handlePerPage={handlePerPage}
+          reportType={ReportTypeEnum.BANK_PROMOTION_REPORT}
+          reSentEmail={reSentEmail}
           deleteRequestReportId={deleteRequestReportId} />
       </div>
     </Fragment>

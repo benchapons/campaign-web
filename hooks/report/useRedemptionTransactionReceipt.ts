@@ -42,7 +42,7 @@ const useRedemptionTransactionReceipt = (authorizedUser: AuthorizedUserType) => 
 
     fetchReportRequest,
     deleteRequestReportId,
-
+    reSentEmail,
     setPulling,
     clearIntervalHook,
     postRequestReportByReportType,
@@ -208,7 +208,7 @@ const useRedemptionTransactionReceipt = (authorizedUser: AuthorizedUserType) => 
     onChangeInput,
     handleClickExport: methodsForm?.handleSubmit(handleClickExport),
     handleClickAuditLog,
-
+    reSentEmail,
     deleteRequestReportId,
     postRequestReportByReportType,
     page,

@@ -16,17 +16,17 @@ export const config = {
   },
 };
 
-const deleteReportJobById = (req: NextApiRequest, res: NextApiResponse, authorizedUser: AuthorizedUserType) => {
-  if (req.method !== 'DELETE') return res.status(405).end();
+const reSendEmailById = (req: NextApiRequest, res: NextApiResponse, authorizedUser: AuthorizedUserType) => {
+  if (req.method !== 'PATCH') return res.status(405).end();
 
   const { jobId } = req.query;
 
   const payload: HTTPDataType = {
-    pathService: `/${VERSION_1}/generates/${jobId}`,
+    pathService: `/${VERSION_1}/generates/${jobId}/send-email`,
     body: {},
   };
 
-  ReportService.delete({ ...payload })
+  ReportService.patch({ ...payload })
     .then((response) => {
       res.status(200).json(response);
     })
@@ -35,4 +35,4 @@ const deleteReportJobById = (req: NextApiRequest, res: NextApiResponse, authoriz
     });
 };
 
-export default middleware(deleteReportJobById);
+export default middleware(reSendEmailById);
