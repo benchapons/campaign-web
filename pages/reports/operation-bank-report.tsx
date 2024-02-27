@@ -39,7 +39,7 @@ const OperationBankReportPage = ({ authorizedUser }: any) => {
     handleClickExport,
     reportTableRef,
     isShowCloseBtn,
-  } = useOperationReport();
+  } = useOperationReport(authorizedUser);
 
   if (!isPagePermission(authorizedUser, [Permission.RPT_REDEMP_07])) return <Forbidden />;
 

@@ -12,6 +12,7 @@ import {
   getCampaignName,
   getReportByParam,
   postRequestReport,
+  reSendEmailByRequestId,
 } from '@/services/client/report.service';
 import { CampaignMasterState, campaignMasterState } from '@/store/master-campaign';
 import { AuthorizedUserType } from '@/types/auth.type';
@@ -167,14 +168,44 @@ const useReport = <V>(
   };
 
   const deleteRequestReportId = async (requestId: string) => {
-    deleteReportByRequestId(requestId)
-      .then(() => {
-        fetchReportRequest(1, sizePage);
-      })
-      .catch((error) => {
-        SwalCustom.fire(`เกิดข้อผิดพลาด`, error?.errorMessageTh, 'error');
-      });
+    SwalCustom.fire({
+      icon: 'warning',
+      title: `คุณต้องการลบไฟล์นี้ใช่หรือไม่?`,
+      cancelButtonText: 'ไม่',
+      confirmButtonText: 'ใช่',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteReportByRequestId(requestId)
+          .then(() => {
+            fetchReportRequest(1, sizePage);
+          })
+          .catch((error) => {
+            SwalCustom.fire(`เกิดข้อผิดพลาด`, error?.errorMessageTh, 'error');
+          });
+      }
+    });
   };
+
+  const reSentEmail = async (requestId: string) => {
+    SwalCustom.fire({
+      icon: 'warning',
+      title: `คุณต้องการส่ง Password ไปที่ Email อีกครั้งใช่หรือไม่?`,
+      cancelButtonText: 'ไม่',
+      confirmButtonText: 'ใช่',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        reSendEmailByRequestId(requestId)
+          .then(() => {
+            fetchReportRequest(1, sizePage);
+          })
+          .catch((error) => {
+            SwalCustom.fire(`เกิดข้อผิดพลาด`, error?.errorMessageTh, 'error');
+          });
+      }
+    });
+  }
 
   const fetchReportRequest = (page: number, sizePage: number, cancelToken?: CancelToken) => {
     getReportByParam<V>(
@@ -197,6 +228,7 @@ const useReport = <V>(
         startTime();
       })
       .catch((error) => {
+        setPulling(pullingTime);
         clearIntervalHook();
         SwalCustom.fire(`เกิดข้อผิดพลาด`, error?.errorMessageTh, 'error');
       });
@@ -205,8 +237,8 @@ const useReport = <V>(
   const postRequestReportByReportType = <T>(params: T) => {
     if (!authorizedUser.mail) {
       return SwalCustom.fire('คำขอไม่สำเร็จ', 'กรุณาเพิ่ม Email ใน Account ด้วย', 'warning');
-
     }
+    setPulling(pullingTime);
     postRequestReport(
       {
         ...params,
@@ -246,6 +278,7 @@ const useReport = <V>(
     fetchMasterForReceiptTxnReport,
     fetchReportRequest,
     deleteRequestReportId,
+    reSentEmail,
     postRequestReportByReportType,
     pulling,
     setPulling,

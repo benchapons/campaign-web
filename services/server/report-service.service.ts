@@ -7,6 +7,7 @@ type ReportServiceType = {
   get: <T>(params: HTTPDataType) => Promise<T>;
   post: <T>(params: HTTPDataType) => Promise<T>;
   delete: <T>(params: HTTPDataType) => Promise<T>;
+  patch: <T>(params: HTTPDataType) => Promise<T>;
 };
 
 const ReportService: ReportServiceType = {
@@ -20,7 +21,7 @@ const ReportService: ReportServiceType = {
           resolve(response.data);
         })
         .catch((error: AxiosError) => {
-          reject(transformError(error));
+          reject(error);
         });
     });
   },
@@ -31,7 +32,7 @@ const ReportService: ReportServiceType = {
           resolve(response.data);
         })
         .catch((error: AxiosError) => {
-          reject(transformError(error));
+          reject(error);
         });
     });
   },
@@ -46,7 +47,19 @@ const ReportService: ReportServiceType = {
           resolve(response.data);
         })
         .catch((error: AxiosError) => {
-          reject(transformError(error));
+          reject(error);
+        });
+    });
+  },
+  patch: <T>({ pathService, body, headers }: HTTPDataType): Promise<T> => {
+    return new Promise((resolve, reject) => {
+      ReportServiceClient
+        .patch<T, AxiosResponse<T>>(`${pathService}`, { ...body }, { headers })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error: AxiosError) => {
+          reject(error);
         });
     });
   },

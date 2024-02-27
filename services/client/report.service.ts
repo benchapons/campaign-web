@@ -145,6 +145,19 @@ export async function deleteReportByRequestId(requestId: string): Promise<undefi
   });
 }
 
+export async function reSendEmailByRequestId(requestId: string): Promise<undefined> {
+  return new Promise(async (resolve, reject) => {
+    http
+      .patch(`${REPORT}/${CLIENT_API_PATH.REPORT.RE_SENT_EMAIL}/${requestId}`)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
 export async function postRequestReport<T>(
   params: T,
   reportType: ReportTypeEnum

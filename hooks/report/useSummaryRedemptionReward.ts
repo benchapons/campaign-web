@@ -31,7 +31,7 @@ const useSummaryRedemptionReward = (authorizedUser: AuthorizedUserType) => {
     fetchMasterSummaryData,
     fetchCampaignName,
     handleClickAuditLog,
-
+    reSentEmail,
     fetchReportRequest,
     deleteRequestReportId,
 
@@ -140,6 +140,7 @@ const useSummaryRedemptionReward = (authorizedUser: AuthorizedUserType) => {
     onChangeInput,
     handleClickExport: methodsForm?.handleSubmit(handleClickExport),
     handleClickAuditLog,
+    reSentEmail,
     deleteRequestReportId,
     postRequestReportByReportType,
     page,

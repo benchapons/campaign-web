@@ -39,7 +39,7 @@ const OperationCorpoReportPage = ({ authorizedUser }: any) => {
     reportTableRef,
     isShowCloseBtn,
     reportForm,
-  } = useOperationReport();
+  } = useOperationReport(authorizedUser);
 
   if (!isPagePermission(authorizedUser, [Permission.RPT_REDEMP_06])) return <Forbidden />;
 

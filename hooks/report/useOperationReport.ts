@@ -7,18 +7,20 @@ import { useDownloadExcel } from 'react-export-table-to-excel';
 import { useRef } from 'react';
 
 import { ChangeEventBaseType } from '@/types/event.interface';
-import { OperationReportFormType } from '@/types/report.type';
+import { OperationReportFormType, ReportTypeEnum } from '@/types/report.type';
 import { SwalCustom } from '@/configurations/alert';
 import useReport from './useReport';
 import { getReceiptsByCampaignId, getCampaignListById, getCampaignList } from '@/services/client/report.service';
 import { ResGetCampaignList } from '@/services/client/campaign.service';
+import { AuthorizedUserType } from '@/types/auth.type';
+import { PULLING_TIME } from '@/constants/global';
 
 const initReportForm: OperationReportFormType = {
   campaignStartDate: null,
   campaignEndDate: null,
 };
 
-const useOperationReport = () => {
+const useOperationReport = (authorizedUser: AuthorizedUserType) => {
   const {
     isMasterLoading,
     buildingList,
@@ -27,7 +29,11 @@ const useOperationReport = () => {
     fetchMasterSummaryData,
     fetchCampaignName,
     handleClickAuditLog,
-  } = useReport();
+  } = useReport<OperationReportFormType>(
+    authorizedUser,
+    ReportTypeEnum.OPERATION_REPORT,
+    PULLING_TIME,
+  );
 
   const [reportForm, setReportForm] = useState<OperationReportFormType>(initReportForm);
   const [isLoading, setIsLoading] = useState<boolean>(true);

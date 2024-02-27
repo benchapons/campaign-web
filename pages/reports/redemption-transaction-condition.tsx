@@ -20,7 +20,7 @@ import { DateObject } from 'react-multi-date-picker';
 import { convertDateByFormat } from '@/utilities/format';
 import { CheckValueArrayInArrayOfObjects } from '@/utilities/global';
 import TableReport from '@/components/features/report/TableReport';
-import { RedemptionTransactionConditionFormType } from '@/types/report.type';
+import { RedemptionTransactionConditionFormType, ReportTypeEnum } from '@/types/report.type';
 import { PageSessionType } from '@/types/session.type';
 
 const RedemptionTransactionConditionPage = ({ authorizedUser }: PageSessionType) => {
@@ -35,7 +35,7 @@ const RedemptionTransactionConditionPage = ({ authorizedUser }: PageSessionType)
     onChangeInput,
     handleClickExport,
     handleClickAuditLog,
-
+    reSentEmail,
     deleteRequestReportId,
 
     page,
@@ -165,6 +165,8 @@ const RedemptionTransactionConditionPage = ({ authorizedUser }: PageSessionType)
           sizePage={sizePage}
           handlePage={handlePage}
           handlePerPage={handlePerPage}
+          reportType={ReportTypeEnum.REDEMPTION_TRANSACTION_CONDITION_REPORT}
+          reSentEmail={reSentEmail}
           deleteRequestReportId={deleteRequestReportId} />
       </div>
     </Fragment>
